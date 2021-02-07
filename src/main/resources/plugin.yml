@@ -1,0 +1,13 @@
+name: FMTP
+version: 3.2.0 Early Access
+author: Stefan456789
+main: at.stefan.Main
+commands:
+    gm:
+        usage: /gm <0/1/2/3/survival/creative/adventure/spectator> [Player]
+    mobgrdifficulty:
+        usage: /mobgrdifficulty <0/1/2/3/peaceful/easy/normal/hard>
+    csay:
+        usage: /csay [message with or without color codes]
+
+               

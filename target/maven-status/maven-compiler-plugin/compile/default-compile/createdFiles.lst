@@ -1,0 +1,5 @@
+at\FMTP\commands\CMDDifficulty.class
+at\FMTP\commands\CMDColouredSay.class
+at\FMTP\commands\CMDGamemode.class
+at\FMTP\chatwrite\CMDcSay.class
+at\FMTP\Main.class
