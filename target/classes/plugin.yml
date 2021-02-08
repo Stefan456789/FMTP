@@ -9,5 +9,6 @@ commands:
         usage: /mobgrdifficulty <0/1/2/3/peaceful/easy/normal/hard>
     csay:
         usage: /csay [message with or without color codes]
-
+    findplayer:
+        usage: /findplayer [Player]
                

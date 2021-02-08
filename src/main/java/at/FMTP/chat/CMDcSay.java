@@ -1,4 +1,4 @@
-package at.FMTP.chatwrite;
+package at.FMTP.chat;
 import at.FMTP.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

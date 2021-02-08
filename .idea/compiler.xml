@@ -9,8 +9,5 @@
         <module name="FMTP" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="FMTP" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

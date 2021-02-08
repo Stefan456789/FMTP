@@ -1,7 +1,6 @@
 package at.FMTP.commands;
 
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,27 +15,30 @@ import at.FMTP.Main;
 
 public class CMDColouredSay implements CommandExecutor, TabCompleter {
 
-	public CMDColouredSay(Main main) {
-	}
+    private Main main;
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
+    public CMDColouredSay(Main main) {
+        this.main = main;
+    }
 
-		if (sender instanceof Player) {
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
 
-
-			sender.getServer().broadcastMessage("[" + sender.getName() + "] " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-
-
-		}
-		return true;
-
-	}
+        if (sender instanceof Player) {
 
 
-	@Override
-	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] args) {
-		List<String> a = Arrays.asList("&4", "&c", "&6", "&e", "&2", "&a", "&b", "&3", "&1", "&9", "&d", "&5", "&f", "&7", "&8", "&0", "&r", "&l", "&o", "&m", "&k");
-		return a;
-	}
+            sender.getServer().broadcastMessage("[" + sender.getName() + "] " + ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+
+
+        }
+        return true;
+
+    }
+
+
+    @Override
+    public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] args) {
+        List<String> a = Arrays.asList("&4", "&c", "&6", "&e", "&2", "&a", "&b", "&3", "&1", "&9", "&d", "&5", "&f", "&7", "&8", "&0", "&r", "&l", "&o", "&m", "&k");
+        return a;
+    }
 }
