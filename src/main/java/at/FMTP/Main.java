@@ -1,6 +1,7 @@
 package at.FMTP;
 
-import at.FMTP.commands.CMDFindPlayer;
+
+import at.FMTP.commands.CMDLocatePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,10 +39,10 @@ public class Main extends JavaPlugin {
 		getCommand("csay").setExecutor(csHandler);
 		getCommand("csay").setTabCompleter(csHandler);
 
-		CMDFindPlayer fpHandler = new CMDFindPlayer(this);
+		CMDLocatePlayer fpHandler = new CMDLocatePlayer(this);
 
-		getCommand("findplayer").setExecutor(fpHandler);
-		getCommand("findplayer").setTabCompleter(fpHandler);
+		getCommand("locateplayer").setExecutor(fpHandler);
+		getCommand("locateplayer").setTabCompleter(fpHandler);
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new CMDcSay(this), this);
 

@@ -5,6 +5,12 @@ import com.mojang.nbt.CompoundTag;
 import com.mojang.nbt.IntTag;
 import com.mojang.nbt.ListTag;
 import com.mojang.nbt.NbtIo;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -19,10 +25,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CMDFindPlayer implements CommandExecutor, TabCompleter {
+public class CMDLocatePlayer implements CommandExecutor, TabCompleter {
     private Main main;
 
-    public CMDFindPlayer(Main main) {
+    public CMDLocatePlayer(Main main) {
         this.main = main;
     }
 
@@ -34,7 +40,13 @@ public class CMDFindPlayer implements CommandExecutor, TabCompleter {
                 @SuppressWarnings("deprecation") OfflinePlayer player = sender.getServer().getOfflinePlayer(args[0]);
                 if (player.isOnline()) {
                     Location playerloc = player.getPlayer().getLocation();
-                    sender.sendMessage(args[0] + "is at " + playerloc.getX() + " " + playerloc.getY() + " " + playerloc.getZ() + " and in the world " + playerloc.getWorld() + ".");
+                    TextComponent locMessage = new TextComponent("[" + (int)playerloc.getX() + ", " + (int)playerloc.getY() + ", " + (int)playerloc.getZ() + "]");
+                    locMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click to teleport")));
+                    locMessage.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + sender.getName() + " " + (int)playerloc.getX() + " " + (int)playerloc.getY() + " " + (int)playerloc.getZ()));
+                    locMessage.setColor(ChatColor.GREEN);
+                    sender.spigot().sendMessage(new TextComponent(args[0] + " is at "), locMessage, new TextComponent(" and in the world " + playerloc.getWorld().getName() + "."));
+                    return true;
+
                 } else {
 
                     File playdataFile = new File(sender.getServer().getWorldContainer().getAbsoluteFile() + main.getPlayerdataPath() + player.getUniqueId() + ".dat");
@@ -43,10 +55,22 @@ public class CMDFindPlayer implements CommandExecutor, TabCompleter {
                     ListTag<IntTag> pos = (ListTag<IntTag>) playerdata.getList("Pos");
                     String dim = playerdata.getString("Dimension");
 
-                    sender.sendMessage(String.format(args[0] + "is at" + pos.get(0) + " " + pos.get(1) + " " + pos.get(2) + " and in the dimension " + dim + "."));
+                    
+                    TextComponent posMessage = new TextComponent("[" + pos.get(0)  + ", " + pos.get(1) + ", " + pos.get(2) + "]");
+                    posMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click to teleport")));
+                    posMessage.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + sender.getName() + " " + pos.get(0) + " " + pos.get(1) + " " + pos.get(2)));
+                    posMessage.setColor(ChatColor.GREEN);
+
+                    sender.spigot().sendMessage(new TextComponent(args[0] + " is at "), posMessage, new TextComponent(" and in the dimension " + dim + "."));
                     return true;
+
+
                 }
-            } else sender.sendMessage("You do not have the permissions for that command!");
+            } else {
+                sender.sendMessage("You do not have the permissions for that command!");
+                return true;
+            }
+
         } catch (
                 FileNotFoundException e) {
             e.printStackTrace();

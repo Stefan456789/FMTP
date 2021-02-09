@@ -1,2 +1,0 @@
-::robocopy e:\Daten\Github\FMTP\target "e:\Daten\Minecraftplugins\test server\plugins" FMTP-*.*.*.jar /XD "e:\Daten\Github\FMTP\target\*shaded*.jar*",e:\Daten\Github\FMTP\target\*original*.jar*" /S
-xcopy e:\Daten\Github\FMTP\target\FMTP-*.*.*.jar "e:\Daten\Minecraftplugins\test server\plugins" /exclude:e:\Daten\Github\FMTP\target\except.txt
