@@ -42,7 +42,7 @@ public class CMDLocatePlayer implements CommandExecutor, TabCompleter {
                     Location playerloc = player.getPlayer().getLocation();
                     TextComponent locMessage = new TextComponent("[" + (int)playerloc.getX() + ", " + (int)playerloc.getY() + ", " + (int)playerloc.getZ() + "]");
                     locMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click to teleport")));
-                    locMessage.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + sender.getName() + " " + (int)playerloc.getX() + " " + (int)playerloc.getY() + " " + (int)playerloc.getZ()));
+                    locMessage.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp " + sender.getName() + " " + (int)playerloc.getX() + " " + (int)playerloc.getY() + " " + (int)playerloc.getZ()));
                     locMessage.setColor(ChatColor.GREEN);
                     sender.spigot().sendMessage(new TextComponent(args[0] + " is at "), locMessage, new TextComponent(" and in the world " + playerloc.getWorld().getName() + "."));
                     return true;
@@ -58,9 +58,10 @@ public class CMDLocatePlayer implements CommandExecutor, TabCompleter {
                     
                     TextComponent posMessage = new TextComponent("[" + pos.get(0)  + ", " + pos.get(1) + ", " + pos.get(2) + "]");
                     posMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click to teleport")));
-                    posMessage.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + sender.getName() + " " + pos.get(0) + " " + pos.get(1) + " " + pos.get(2)));
+                    posMessage.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tp " + sender.getName() + " " + pos.get(0) + " " + pos.get(1) + " " + pos.get(2)));
                     posMessage.setColor(ChatColor.GREEN);
 
+                    sender.sendMessage("[" + pos.get(0)  + ", " + pos.get(1) + ", " + pos.get(2) + "]");
                     sender.spigot().sendMessage(new TextComponent(args[0] + " is at "), posMessage, new TextComponent(" and in the dimension " + dim + "."));
                     return true;
 
